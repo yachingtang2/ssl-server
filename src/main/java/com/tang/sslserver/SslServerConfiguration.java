@@ -4,7 +4,6 @@ import org.apache.catalina.Context;
 import org.apache.catalina.connector.Connector;
 import org.apache.tomcat.util.descriptor.web.SecurityCollection;
 import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
@@ -13,11 +12,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SslServerConfiguration {
 
-  @Value("${http.port}")
-  private int httpPort;
-
-  @Value("${server.port}")
-  private int serverPort;
+//  @Value("${http.port}")
+//  private int httpPort;
+//
+//  @Value("${server.port}")
+//  private int serverPort;
 
   @Bean
   public ServletWebServerFactory servletContainer() {
@@ -44,9 +43,9 @@ public class SslServerConfiguration {
 
     Connector connector = new Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);
     connector.setScheme("http");
-    connector.setPort(httpPort);
+    connector.setPort(8080);
     connector.setSecure(false);
-    connector.setRedirectPort(serverPort);
+    connector.setRedirectPort(8443);
 
     return connector;
   }
